@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
               flex: 3,
               child: Center(
                 child: Image.asset(
-                  'images/Logo.webp',
+                  'images/splash_gif.gif',
                   width: 200,
                   height: 200,
                   ),
