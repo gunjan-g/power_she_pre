@@ -78,6 +78,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
+  curved_nav_bar:
+    dependency: "direct main"
+    description:
+      name: curved_nav_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2"
+  custom_line_indicator_bottom_navbar:
+    dependency: "direct main"
+    description:
+      name: custom_line_indicator_bottom_navbar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.8"
   fake_async:
     dependency: transitive
     description:
@@ -282,6 +296,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.3"
+  persistent_bottom_nav_bar_v2:
+    dependency: "direct main"
+    description:
+      name: persistent_bottom_nav_bar_v2
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.2.6"
   platform:
     dependency: transitive
     description:

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:power_she_pre/screens/course.dart';
+import 'package:power_she_pre/screens/home_screen.dart';
 import 'package:power_she_pre/screens/splash.dart';
 import 'package:power_she_pre/screens/welcome_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: const SplashScreen(),
       theme:ThemeData(
-        textTheme: GoogleFonts.robotoTextTheme(
+        textTheme: GoogleFonts.dosisTextTheme(
           Theme.of(context).textTheme
         ),
       ),
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
       routes: {
         SplashScreen.id: (context) => const SplashScreen(),
         WelcomeScreen.id: (context) => const WelcomeScreen(),
+        HomeScreen.id:(context)=>const HomeScreen(),
+        Course.id:(context)=>const Course()
       },
     );
   }

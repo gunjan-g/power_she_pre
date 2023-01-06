@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:power_she_pre/constants.dart';
+import 'package:power_she_pre/screens/home_screen.dart';
 import 'dart:async';
 import 'package:power_she_pre/screens/welcome_screen.dart';
 
@@ -16,34 +18,24 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     Timer(Duration(seconds: 5),
-        () => Navigator.pushNamed(context, WelcomeScreen.id));
+        () => Navigator.pushNamed(context, HomeScreen.id));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF372948),
+      backgroundColor: kbase,
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Expanded(
-              flex: 3,
               child: Center(
                 child: Image.asset(
                   'images/splash_gif.gif',
-                  width: 200,
-                  height: 200,
+                  width: MediaQuery.of(context).size.width * 0.99,
+                  height: MediaQuery.of(context).size.height * 0.99,
                   ),
-              ),
-            ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(
-                    color: Colors.black,
-                  ),
-                ],
               ),
             ),
           ],

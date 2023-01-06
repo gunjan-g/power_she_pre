@@ -18,6 +18,9 @@ dependencies:
   firebase_auth: ^4.2.5
   firebase_core: ^2.4.1
   google_fonts: ^3.0.1
+  persistent_bottom_nav_bar_v2: ^4.2.6
+  custom_line_indicator_bottom_navbar: ^0.0.8
+  curved_nav_bar: ^0.0.2
 
 dev_dependencies:
   flutter_test:
