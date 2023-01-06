@@ -7,6 +7,7 @@ import 'package:power_she_pre/screens/home_screen.dart';
 import 'package:power_she_pre/screens/splash.dart';
 import 'package:power_she_pre/screens/welcome_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:power_she_pre/screens/carousel.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
         SplashScreen.id: (context) => const SplashScreen(),
         WelcomeScreen.id: (context) => const WelcomeScreen(),
         HomeScreen.id:(context)=>const HomeScreen(),
-        Course.id:(context)=>const Course()
+        Course.id:(context)=>const Course(),
+        Carousel.id:(context)=>const Carousel()
       },
     );
   }
