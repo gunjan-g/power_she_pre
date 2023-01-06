@@ -51,7 +51,7 @@ class Carousel extends StatelessWidget {
             text: "Search for the available opportunities and scholarships",
           ),
           Slide(
-            imgPath: 'images/Safety.png',
+            imgPath: 'images/SafetyC.png',
             text: 'Feel safe with alerts and safe locations',
           ),
           ],
