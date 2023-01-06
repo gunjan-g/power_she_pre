@@ -74,12 +74,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               Icon(
-                                Icons.abc,
+                                Icons.videocam,
                                 color: Colors.white,
                                 size: 20,
                               ),
                               Text(
-                                'Add Dog',
+                                'Tutorials',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
@@ -101,12 +101,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               Icon(
-                                Icons.abc,
+                                Icons.storefront,
                                 color: Colors.white,
                                 size: 20,
                               ),
                               Text(
-                                'Near me',
+                                'Store',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
@@ -133,12 +133,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               Icon(
-                                Icons.abc,
+                                Icons.groups,
                                 color: Colors.white,
                                 size: 20,
                               ),
                               Text(
-                                'About Us',
+                                'Support',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
@@ -160,12 +160,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               Icon(
-                                Icons.person,
+                                Icons.school,
                                 color: Colors.white,
                                 size: 20,
                               ),
                               Text(
-                                'My Profile',
+                                'Opportunities',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
@@ -193,8 +193,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                   },
                   backgroundColor: Color(0xff88c0b5),
-                  child: Image.asset('images/logo.png',
-                      width: 120, height: 120),
+                  child: CircleAvatar(
+                    radius: 35,
+                    backgroundImage: AssetImage('images/safety.png'),
+                  )
                 ),
               ),
             ),
