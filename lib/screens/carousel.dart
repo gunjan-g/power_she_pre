@@ -3,6 +3,8 @@ import 'package:power_she_pre/components/slide.dart';
 import 'package:flutter_carousel_intro/flutter_carousel_intro.dart';
 import 'package:power_she_pre/constants.dart';
 
+import 'home_screen.dart';
+
 class Carousel extends StatelessWidget {
   static const String id = "carousel";
   const Carousel({Key? key}) : super(key: key);
@@ -50,9 +52,14 @@ class Carousel extends StatelessWidget {
             imgPath: 'images/Opportunities.jpg',
             text: "Search for the available opportunities and scholarships",
           ),
-          Slide(
-            imgPath: 'images/SafetyC.png',
-            text: 'Feel safe with alerts and safe locations',
+          GestureDetector(
+            child: Slide(
+              imgPath: 'images/SafetyC.png',
+              text: 'Feel safe with alerts and safe locations',
+            ),
+            onTap:(){
+              Navigator.pushNamed(context,HomeScreen.id);
+            }
           ),
           ],
       ),
