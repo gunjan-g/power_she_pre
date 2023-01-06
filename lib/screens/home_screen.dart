@@ -3,7 +3,7 @@ import'package:power_she_pre/constants.dart';
 import'package:power_she_pre/screens/splash.dart';
 import'dart:async';
 import'package:power_she_pre/screens/welcome_screen.dart';
-
+import 'package:sidebarx/sidebarx.dart';
 import '../components/appBarInit.dart';
 
 
@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar:  AppBar(
         backgroundColor: kpink,
         title: Padding(
-          padding: const EdgeInsets.only(right: 40),
+          padding: const EdgeInsets.only(right: 0),
           child: Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -42,9 +42,41 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+      endDrawer:SidebarX(
+        controller: SidebarXController(selectedIndex: 0, extended: true),
+        theme: SidebarXTheme(
+          selectedItemDecoration: BoxDecoration(
+            color:kpink
+          ),
+          // padding: EdgeInsets.all(20),
+          width:200,
+          decoration: BoxDecoration(
+            color: klblue
+          ),
+          textStyle: TextStyle(
+            fontSize:20,
+            color: kdblue,
+          ),
+          selectedTextStyle: TextStyle(
+            fontSize: 20,
+            color:kbase,
+          ),
+          selectedIconTheme: IconThemeData(
+            color: kbase
+          ),
+          iconTheme: IconThemeData(
+            color: kdblue
+          ),
+          selectedItemTextPadding: EdgeInsets.only(left:20),
+          itemTextPadding: EdgeInsets.only(left:20),
+        ),
+        items: [
+          SidebarXItem(icon: Icons.home, label: 'Home',onTap:(){}),
+          SidebarXItem(icon: Icons.search, label: 'Search'),
+        ],
+      ),
       bottomNavigationBar: Stack(
         children: [
-
           Align(
             alignment: Alignment.bottomCenter,
             child: BottomAppBar(
@@ -73,13 +105,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
+
                               Icon(
-                                Icons.abc,
+                                Icons.videocam,
                                 color: Colors.white,
                                 size: 20,
                               ),
                               Text(
-                                'Add Dog',
+                                'Tutorials',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
@@ -88,31 +121,34 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-                        MaterialButton(
-                          minWidth: 40,
-                          onPressed: () {
+                        Padding(
+                          padding: const EdgeInsets.only(left:13.0),
+                          child: MaterialButton(
+                            minWidth: 40,
+                            onPressed: () {
 
-                            //   currentScreen = HomeScreen();
-                            //   currentTab = 0;
-                            // });
-                            // Navigator.pushNamed(context, NearMe.id);
-                          },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Icon(
-                                Icons.abc,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                              Text(
-                                'Near me',
-                                style: TextStyle(
+                              //   currentScreen = HomeScreen();
+                              //   currentTab = 0;
+                              // });
+                              // Navigator.pushNamed(context, NearMe.id);
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Icon(
+                                  Icons.storefront,
                                   color: Colors.white,
-                                  fontSize: 12,
+                                  size: 20,
                                 ),
-                              )
-                            ],
+                                Text(
+                                  'Store',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -133,12 +169,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               Icon(
-                                Icons.abc,
+                                Icons.school,
                                 color: Colors.white,
                                 size: 20,
                               ),
                               Text(
-                                'About Us',
+                                'Opportunities',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
@@ -160,12 +196,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               Icon(
-                                Icons.person,
+                                Icons.groups,
                                 color: Colors.white,
                                 size: 20,
                               ),
                               Text(
-                                'My Profile',
+                                'Support',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
@@ -192,9 +228,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   clipBehavior: Clip.none,
                   onPressed: () {
                   },
-                  backgroundColor: Color(0xff88c0b5),
-                  child: Image.asset('images/logo.png',
-                      width: 120, height: 120),
+                  backgroundColor: kdblue,
+                  child: CircleAvatar(
+                    radius: 35,
+                    backgroundImage: AssetImage('images/safety.png'),
+                  )
                 ),
               ),
             ),
