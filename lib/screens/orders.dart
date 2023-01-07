@@ -240,7 +240,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                                                   },
                                                                 );
                                                                 // setState(() {
-                                                                //   spinner = false;
+                                                                //   spinner = false;//
                                                                 // });
                                                               },
                                                               child: Container(
