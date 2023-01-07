@@ -14,6 +14,7 @@ import '../components/appBarInit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:power_she_pre/screens/phone_details.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SafetyScreen extends StatefulWidget {
   static const String id = "safety_screen";
@@ -116,7 +117,15 @@ class _SafetyScreenState extends State<SafetyScreen> {
                     Navigator.push(context,MaterialPageRoute(builder: (context) => PhoneDetails()));
                   }else{
                     //Add code here
-                    print('done');
+                    final Uri url = Uri(
+                      scheme: 'tel',
+                      path: phoneSafety,
+                    );
+                    if(await canLaunchUrl(url)){
+                      await launchUrl(url);
+                    }else{
+                      print('Cannot launch this url!');
+                    }
                   }
 
 
