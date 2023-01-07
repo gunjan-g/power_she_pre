@@ -22,6 +22,13 @@ dependencies:
   custom_line_indicator_bottom_navbar: ^0.0.8
   curved_nav_bar: ^0.0.2
   sidebarx: ^0.14.0
+  image_picker: ^0.8.6
+  modal_progress_hud_nsn: ^0.3.0
+  tflite: ^1.1.2
+  file_picker: ^5.2.4
+  get: ^4.6.5
+  country_code_picker: ^2.0.2
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:

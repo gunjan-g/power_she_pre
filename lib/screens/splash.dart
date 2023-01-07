@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:power_she_pre/constants.dart';
-import 'package:power_she_pre/screens/carousel.dart';
 import 'package:power_she_pre/screens/home_screen.dart';
 import 'dart:async';
 import 'package:power_she_pre/screens/welcome_screen.dart';
@@ -19,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     Timer(Duration(seconds: 5),
-        () => Navigator.pushNamed(context, Carousel.id));
+        () => Navigator.pushNamed(context, WelcomeScreen.id));
   }
 
   @override
