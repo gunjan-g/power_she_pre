@@ -2,6 +2,7 @@ import'package:flutter/material.dart';
 import'package:power_she_pre/constants.dart';
 
 import '../screens/opr_screen.dart';
+import '../screens/safety_screen.dart';
 import '../screens/store.dart';
 
 class BottomBar extends StatelessWidget {
@@ -151,7 +152,9 @@ class BottomBar extends StatelessWidget {
                 height: 68,
                 child: FloatingActionButton(
                     clipBehavior: Clip.none,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, SafetyScreen.id);
+                    },
                     backgroundColor: kdblue,
                     child: CircleAvatar(
                       radius: 35,

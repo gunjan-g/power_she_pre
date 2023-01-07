@@ -1,0 +1,135 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:power_she_pre/components/AppBarHome.dart';
+import 'package:power_she_pre/constants.dart';
+import 'package:power_she_pre/components/card.dart';
+import 'package:power_she_pre/screens/opr_screen.dart';
+import'package:power_she_pre/screens/splash.dart';
+import'dart:async';
+import'package:power_she_pre/screens/welcome_screen.dart';
+import 'package:sidebarx/sidebarx.dart';
+import '../components/BottomBar.dart';
+import '../components/appBarInit.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:power_she_pre/screens/phone_details.dart';
+
+class SafetyScreen extends StatefulWidget {
+  static const String id = "safety_screen";
+  const SafetyScreen({super.key});
+
+  @override
+  State<SafetyScreen> createState() => _SafetyScreenState();
+}
+
+class _SafetyScreenState extends State<SafetyScreen> {
+  bool spinner = false;
+  final _auth = FirebaseAuth.instance;
+  final _firestore = FirebaseFirestore.instance;
+  late User loggedInUser;
+  String userId = '';
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    final user = _auth.currentUser;
+    if (user != null) {
+      setState(() {
+        loggedInUser = user;
+        userId = loggedInUser.uid;
+      });
+      print(userId);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: kbase,
+      appBar: AppBarHome(),
+      endDrawer:SidebarX(
+        controller: SidebarXController(selectedIndex: 0, extended: true),
+        theme: SidebarXTheme(
+          selectedItemDecoration: BoxDecoration(
+              color:kpink
+          ),
+          // padding: EdgeInsets.all(20),
+          width:200,
+          decoration: BoxDecoration(
+              color: klblue
+          ),
+          textStyle: TextStyle(
+            fontSize:20,
+            color: kdblue,
+          ),
+          selectedTextStyle: TextStyle(
+            fontSize: 20,
+            color:kbase,
+          ),
+          selectedIconTheme: IconThemeData(
+              color: kbase
+          ),
+          iconTheme: IconThemeData(
+              color: kdblue
+          ),
+          selectedItemTextPadding: EdgeInsets.only(left:20),
+          itemTextPadding: EdgeInsets.only(left:20),
+        ),
+        items: [
+          SidebarXItem(icon: Icons.home, label: 'Home',onTap:(){}),
+          SidebarXItem(icon: Icons.search, label: 'Search'),
+        ],
+      ),
+      bottomNavigationBar: BottomBar(),
+      body: ModalProgressHUD(
+        inAsyncCall: spinner,
+        progressIndicator: const CircularProgressIndicator(
+          color: kpink,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Expanded(
+              child: GestureDetector(
+                onTap: (){
+                  // print("Location");
+                },
+                child: Image(
+                  // width: 1.0,
+                  image: AssetImage('images/Location.png'),
+                ),
+              ),
+            ),
+            Expanded(
+              child: GestureDetector(
+                onTap: ()async{
+                  //
+
+
+                  final docref = await _firestore.collection("details").doc(userId).get();
+                  String phoneSafety =docref['Safety'];
+                  print(phoneSafety);
+
+                  if(phoneSafety.length==0){
+                    Navigator.push(context,MaterialPageRoute(builder: (context) => PhoneDetails()));
+                  }else{
+                    //Add code here
+                    print('done');
+                  }
+
+
+                },
+                child: Image(
+                  // width: 1.0,
+                  image: AssetImage('images/Panic2.png'),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

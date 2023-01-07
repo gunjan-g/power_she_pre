@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:power_she_pre/constants.dart';
 import 'package:power_she_pre/components/card.dart';
+import 'package:power_she_pre/screens/home_screen.dart';
 import'package:power_she_pre/screens/splash.dart';
 import'dart:async';
 import'package:power_she_pre/screens/welcome_screen.dart';
@@ -21,6 +23,27 @@ class PhoneDetails extends StatefulWidget {
 
 class _PhoneDetailsState extends State<PhoneDetails> {
   @override
+  final _auth = FirebaseAuth.instance;
+  final _firestore = FirebaseFirestore.instance;
+  late User loggedInUser;
+  String userId = '';
+  String phone='';
+  final snackBar = SnackBar(
+    content: Text('Emergency Contact Added!'),
+  );
+  @override
+  void initState() {
+    // TODO: implement initState
+    final user = _auth.currentUser;
+    if (user != null) {
+      setState(() {
+        loggedInUser = user;
+        userId = loggedInUser.uid;
+      });
+      print(userId);
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kbase,
@@ -296,24 +319,44 @@ class _PhoneDetailsState extends State<PhoneDetails> {
                     ),
                   ),
                   onChanged: (value) {
-                    // name = value.toTitleCase!;
+                    setState(() {
+                      phone=value;
+                    });
                   },
                 ),
               ),
               
               RoundedButton(
                   buttonText: 'Submit',
-                  onPressed: () {
-                    // Navigator.pushNamed(context,
-                    //         Question2.id,
-                    //         arguments: {
-                    //           'url': arguments['url'],
-                    //           'list': arguments['list'],
-                    //           'breed': arguments['breed'],
-                    //           'name': name,
-                    //         },
-                    //       );
-                  })
+                onPressed:
+                    () async {
+                  // Navigator
+                  //     .of(
+                  //     context)
+                  //     .pop();
+                  // setState(
+                  //         () {
+                  //       spinner =
+                  //       true;
+                  //     });
+                      print(phone);
+                  await _firestore
+                      .collection(
+                      'details')
+                      .doc(userId)
+                      .update(
+                      {
+                        'Safety':phone,
+                      });
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      Navigator.pushNamed(context, HomeScreen.id);
+                  // setState(
+                  //         () {
+                  //       spinner =
+                  //       false;
+                  //     });
+                },
+                  )
             ],
           ),
         ),

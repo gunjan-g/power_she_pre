@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:power_she_pre/screens/course.dart';
 import 'package:power_she_pre/screens/home_screen.dart';
 import 'package:power_she_pre/screens/orders.dart';
+import 'package:power_she_pre/screens/safety_screen.dart';
 import 'package:power_she_pre/screens/splash.dart';
 import 'package:power_she_pre/screens/authentication/login.dart';
 import 'package:power_she_pre/screens/authentication/registration.dart';
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
         StoreScreen.id:(context)=>const StoreScreen(),
         OrderScreen.id:(context)=>const OrderScreen(),
         OprScreen.id: (context) => const OprScreen(),
-        // SafetyScreen.id: (context) => const SafetyScreen(),
+        SafetyScreen.id: (context) => const SafetyScreen(),
         PhoneDetails.id: (context) => const PhoneDetails(),
       },
     );
