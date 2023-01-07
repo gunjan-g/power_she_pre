@@ -20,12 +20,13 @@ class _HomeScreenState extends State<HomeScreen> {
   late TextEditingController _idController;
   late TextEditingController _seekToController;
 
-  late PlayerState _playerState;
-  late YoutubeMetaData _videoMetaData;
+  //late PlayerState _playerState;
+  //late YoutubeMetaData _videoMetaData;
   //double _volume = 100;
   //bool _muted = false;
   bool _isPlayerReady = false;
 
+  /*
   final List<String> _ids = [
     'nPt8bK2gbaU',
     'gQDByCdjUXw',
@@ -67,6 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     }
   }
+  */
 
   final List<YoutubePlayerController> _controllers = [
     'qS4ViqnjkC8',
@@ -114,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
-  final items= [DropOne(), DropTwo(), DropThree()];
+  //final items= [DropOne(), DropTwo(), DropThree()];
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ExpansionTile(
                   title: Text("Videos 1"),
                   leading: Icon(Icons.videocam), //add icon
-                  childrenPadding: EdgeInsets.only(left:60), //children padding
+                  //childrenPadding: EdgeInsets.only(left:10), //children padding
                   children: [
                     SizedBox(
                       height: 500,
@@ -156,55 +158,72 @@ class _HomeScreenState extends State<HomeScreen> {
                            return Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical:5.0),
                               child: Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                color: klblue,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15)
+                                margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                                elevation: 10,
+                                shadowColor: Colors.black,
+                                color: Colors.white,
+                                child: SizedBox(
+                                  width: 200,
+                                  // height: 360,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Column(
+                                      children: [
+                                        //CircleAvatar
+                                        //SizedBox
+                                        //Text
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(5),
+                                          child: Container(
+                                            width: MediaQuery.of(context).size.width,
+                                            height: 150,
+                                            child: YoutubePlayer(
+                                              key: ObjectKey(_controllers[index]),
+                                              controller: _controllers[index],
+                                              actionsPadding: const EdgeInsets.only(left: 16.0),
+                                              bottomActions: [
+                                                CurrentPosition(),
+                                                const SizedBox(width: 10.0),
+                                                ProgressBar(isExpanded: true),
+                                                const SizedBox(width: 10.0),
+                                                RemainingDuration(),
+                                                FullScreenButton(),
+                                              ],
+                                            ),
+                                          ), // Container
+                                        ), //Text
+                                        SizedBox(
+                                          height: 15,
+                                        ),
+                                        Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 6),
+                                              child: Text(
+                                                _title[index],
+                                                textAlign: TextAlign.center,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                    fontFamily: 'Lustria',
+                                                    color: kdblue,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                            )),
+                                      ],
+                                    ), //Column
+                                  ), //Padding
                                 ),
-                                elevation: 5,
-                                margin: EdgeInsets.all(10),
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                        height: 15.0
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 3.0),
-                                      child: YoutubePlayer(
-                                        key: ObjectKey(_controllers[index]),
-                                        controller: _controllers[index],
-                                        actionsPadding: const EdgeInsets.only(left: 16.0),
-                                        bottomActions: [
-                                          CurrentPosition(),
-                                          const SizedBox(width: 10.0),
-                                          ProgressBar(isExpanded: true),
-                                          const SizedBox(width: 10.0),
-                                          RemainingDuration(),
-                                          FullScreenButton(),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.all(5), //apply padding to all four sides
-                                      child: Text(
-                                        _title[index],
-                                        textAlign: TextAlign.center,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: const TextStyle(
-                                            fontFamily: 'Lustria',
-                                            color: kdblue,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )
+                              ),
                           );
                         },
                         itemCount: _controllers.length,
                         separatorBuilder: (context, _) => const SizedBox(height: 1.0),
                       ),
-                    )
+                    ),
                   ]
               ),
 
