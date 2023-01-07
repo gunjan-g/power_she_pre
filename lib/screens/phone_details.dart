@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:power_she_pre/constants.dart';
 import 'package:power_she_pre/components/card.dart';
-// import 'package:power_she_pre/screens/safety_screen.dart';
 import'package:power_she_pre/screens/splash.dart';
 import'dart:async';
 import'package:power_she_pre/screens/welcome_screen.dart';
@@ -9,16 +8,18 @@ import 'package:sidebarx/sidebarx.dart';
 import '../components/appBarInit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:power_she_pre/screens/phone_details.dart';
+import 'package:power_she_pre/components/RoundedButton.dart';
 
-class OprScreen extends StatefulWidget {
-  static const String id = "opr";
-  const OprScreen({super.key});
+class PhoneDetails extends StatefulWidget {
+  static const String id = "phone_details";
+  const PhoneDetails({super.key});
 
   @override
-  State<OprScreen> createState() => _OprScreenState();
+  State<PhoneDetails> createState() => _PhoneDetailsState();
 }
 
-class _OprScreenState extends State<OprScreen> {
+class _PhoneDetailsState extends State<PhoneDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,7 +135,7 @@ class _OprScreenState extends State<OprScreen> {
                               //   currentScreen = HomeScreen();
                               //   currentTab = 0;
                               // });
-                              // Navigator.pushNamed(context, HomeScreen.id);
+                              // Navigator.pushNamed(context, NearMe.id);
                             },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -167,7 +168,7 @@ class _OprScreenState extends State<OprScreen> {
                               // currentScreen = HomeScreen();
                               // currentTab = 0;
                             });
-                            Navigator.pushNamed(context, OprScreen.id);
+                            // Navigator.pushNamed(context, OprScreen.id);
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -194,7 +195,7 @@ class _OprScreenState extends State<OprScreen> {
                               // currentScreen = HomeScreen();
                               // currentTab = 0;
                             });
-                            // Navigator.pushNamed(context, OprScreen.id);
+                            // Navigator.pushNamed(context, UserProfile.id);
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -231,7 +232,6 @@ class _OprScreenState extends State<OprScreen> {
                 child: FloatingActionButton(
                   clipBehavior: Clip.none,
                   onPressed: () {
-                    // Navigator.pushNamed(context, SafetyScreen.id);
                   },
                   backgroundColor: kdblue,
                   child: CircleAvatar(
@@ -246,30 +246,79 @@ class _OprScreenState extends State<OprScreen> {
       ),
       ),
       body: Scaffold(
-        body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('opportunities').snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (!snapshot.hasData) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          else{
-            return Container(
-                color: kbase,
-                child: ListView(
-                  children: snapshot.data!.docs.map((document) {
-                  return Container(
-                  child: CardLayout(url: document['url'],imageText: document['imageText'],subText: document['subText'],mainText: document['mainText']),
-              );
-            }).toList(),
+         backgroundColor: kbase,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        "Enter the phone no of the person who you want to call in an emergency:",
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 33, vertical: 56),
+                child: TextFormField(
+                  style: const TextStyle(
+                    fontSize: 30,
+                  ),
+                  cursorHeight: 30,
+                  cursorColor: Color(0xFFBAD7E9),
+                  decoration: const InputDecoration(
+                    border: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black, width: 1.0),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black, width: 4.0),
+                    ),
+                    labelText: 'Phone Number',
+                    labelStyle: TextStyle(
+                      fontSize: 30,
+                      color: Colors.black,
+                    ),
+                  ),
+                  onChanged: (value) {
+                    // name = value.toTitleCase!;
+                  },
+                ),
+              ),
+              
+              RoundedButton(
+                  buttonText: 'Submit',
+                  onPressed: () {
+                    // Navigator.pushNamed(context,
+                    //         Question2.id,
+                    //         arguments: {
+                    //           'url': arguments['url'],
+                    //           'list': arguments['list'],
+                    //           'breed': arguments['breed'],
+                    //           'name': name,
+                    //         },
+                    //       );
+                  })
+            ],
           ),
-        );
-        }
-        },
+        ),
       ),
-    ),
+      ),
     );
   }
-
 }
