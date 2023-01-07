@@ -39,7 +39,7 @@ Future<void> _launchUrl() async {
       color: Colors.white,
       child: SizedBox(
         width: 200,
-        height: 360,
+        // height: 360,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
@@ -104,9 +104,9 @@ Future<void> _launchUrl() async {
                   style: TextStyle(fontSize: 15),
                 ),
               ),
-              // SizedBox(
-              //   height: 20,
-              // ),
+              SizedBox(
+                height: 20,
+              ),
               MaterialButton(
                 onPressed: _launchUrl,
                 color: Colors.blue[900],
