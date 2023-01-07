@@ -130,7 +130,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                       }
 
                       _pageController.nextPage(
-                        duration: Duration(milliseconds: 300),
+                        duration: Duration(milliseconds: 3),
                         curve: Curves.bounceIn,
                       );
                     },

@@ -22,6 +22,27 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar:  AppBar(
+        backgroundColor: kpink,
+        title: Padding(
+          padding: const EdgeInsets.only(right: 40),
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'images/logo.png',
+                  fit: BoxFit.contain,
+                  height: 32,
+                ),
+                Container(
+                    padding: const EdgeInsets.all(8.0), child: Text('PowerShe'))
+              ],
+
+            ),
+          ),
+        ),
+      ),
       backgroundColor: kbase,
       body: ModalProgressHUD(
         inAsyncCall: spinner,
@@ -32,31 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                AppBar(
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'images/logo.png',
-                        width: 80,
-                        height: 80,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(right: 90),
-                        child: Text(
-                          'Sign Up',
-                          style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  backgroundColor: kpink,
-                  toolbarHeight: 70,
-                  elevation: 5,
-                ),
+
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
                   child: Column(

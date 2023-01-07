@@ -1,11 +1,14 @@
 import'package:flutter/material.dart';
 import'package:power_she_pre/constants.dart';
 import'package:power_she_pre/screens/splash.dart';
+import 'package:power_she_pre/screens/store.dart';
 import'dart:async';
 import'package:power_she_pre/screens/welcome_screen.dart';
 import 'package:sidebarx/sidebarx.dart';
 import '../components/appBarInit.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
+import 'orders.dart';
 
 
 class HomeScreen extends StatefulWidget{
@@ -208,8 +211,10 @@ class _HomeScreenState extends State<HomeScreen> {
           itemTextPadding: EdgeInsets.only(left:20),
         ),
         items: [
-          SidebarXItem(icon: Icons.home, label: 'Home',onTap:(){}),
-          SidebarXItem(icon: Icons.search, label: 'Search'),
+          SidebarXItem(icon: Icons.home, label: 'Profile',onTap:(){}),
+          SidebarXItem(icon: Icons.search, label: 'My Orders',onTap:(){Navigator.pushNamed(context, OrderScreen.id);}),
+          SidebarXItem(icon:Icons.add_box,label:'My Products',onTap:(){}),
+          SidebarXItem(icon:Icons.arrow_back_ios_new_outlined,label:'Logout',onTap:(){}),
         ],
       ),
       bottomNavigationBar: Container(
@@ -269,7 +274,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               //   currentScreen = HomeScreen();
                               //   currentTab = 0;
                               // });
-                              // Navigator.pushNamed(context, NearMe.id);
+                              Navigator.pushNamed(context, StoreScreen.id);
                             },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,

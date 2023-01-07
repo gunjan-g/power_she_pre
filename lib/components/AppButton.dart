@@ -4,8 +4,8 @@ import 'package:power_she_pre/constants.dart';
 class AppButton extends StatelessWidget {
   final String buttonText;
   final VoidCallback? onPressed;
-
-  AppButton({required this.buttonText, required this.onPressed});
+  Color buttonColor;
+  AppButton({required this.buttonText, required this.onPressed,this.buttonColor=kpink});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class AppButton extends StatelessWidget {
           ),
         ),
       ),
-      color: kpink,
+      color: buttonColor,
       minWidth: 250,
       elevation: 5.0,
       shape: RoundedRectangleBorder(

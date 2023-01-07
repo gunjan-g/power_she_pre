@@ -54,7 +54,7 @@ class _SelfieUploadState extends State<SelfieUpload> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, HomeScreen.id);
+                    Navigator.pushNamed(context, WelcomeScreen.id);
                   },
                 ),
                 TextButton(
@@ -117,7 +117,7 @@ class _SelfieUploadState extends State<SelfieUpload> {
                           height: 40,
                         ),
                         Image.asset(
-                          'images/logo.png',
+                          'images/selfie_cover.webp',
                           width: 250,
                           height: 250,
                         ),
