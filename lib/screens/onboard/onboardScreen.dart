@@ -126,7 +126,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => WelcomeScreen()));
+                                builder: (context) => HomeScreen()));
                       }
 
                       _pageController.nextPage(

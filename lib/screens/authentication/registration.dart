@@ -4,6 +4,7 @@ import 'package:power_she_pre/components/AlertBox.dart';
 import 'package:power_she_pre/constants.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:power_she_pre/screens/gender_auth/selfie_upload.dart';
 import 'package:power_she_pre/screens/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -331,7 +332,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                                       'Name': name,
                                       'Phone': phoneNumber,
                                     });
-                                    Navigator.pushNamed(context, HomeScreen.id);
+                                    Navigator.pushNamed(context, SelfieUpload.id);
                                     setState(() {
                                       spinner = false;
                                     });
