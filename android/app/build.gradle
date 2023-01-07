@@ -26,7 +26,11 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 apply plugin: 'com.google.gms.google-services'
 android {
+<<<<<<< HEAD
     compileSdkVersion 33
+=======
+    compileSdkVersion 33 //flutter.compileSdkVersion
+>>>>>>> 5fe5805911a8a8b13ffcd478aa9abde51c989b39
     ndkVersion flutter.ndkVersion
 
 

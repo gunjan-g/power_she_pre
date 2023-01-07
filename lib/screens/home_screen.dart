@@ -5,6 +5,7 @@ import'dart:async';
 import'package:power_she_pre/screens/welcome_screen.dart';
 import 'package:sidebarx/sidebarx.dart';
 import '../components/appBarInit.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 
 class HomeScreen extends StatefulWidget{
@@ -16,11 +17,110 @@ State<HomeScreen> createState()=>_HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late YoutubePlayerController _controller;
+  late TextEditingController _idController;
+  late TextEditingController _seekToController;
+
+  late PlayerState _playerState;
+  late YoutubeMetaData _videoMetaData;
+  //double _volume = 100;
+  //bool _muted = false;
+  bool _isPlayerReady = false;
+
+  final List<String> _ids = [
+    'nPt8bK2gbaU',
+    'gQDByCdjUXw',
+    'iLnmTe5Q2Qw',
+    '_WoCV4c6XOE',
+    'KmzdUe0RSJo',
+    '6jZDSSZZxjQ',
+    'p2lYr3vM_1w',
+    '7QUtEmBT_-w',
+    '34_PXCzGw1M',
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = YoutubePlayerController(
+      initialVideoId: _ids.first,
+      flags: const YoutubePlayerFlags(
+        mute: false,
+        autoPlay: true,
+        disableDragSeek: false,
+        loop: false,
+        isLive: false,
+        forceHD: false,
+        enableCaption: true,
+      ),
+    )..addListener(listener);
+    _idController = TextEditingController();
+    _seekToController = TextEditingController();
+    _videoMetaData = const YoutubeMetaData();
+    _playerState = PlayerState.unknown;
+  }
+
+  void listener() {
+    if (_isPlayerReady && mounted && !_controller.value.isFullScreen) {
+      setState(() {
+        _playerState = _controller.value.playerState;
+        _videoMetaData = _controller.metadata;
+      });
+    }
+  }
+
+  final List<YoutubePlayerController> _controllers = [
+    'gQDByCdjUXw',
+    'iLnmTe5Q2Qw',
+    '_WoCV4c6XOE',
+    'KmzdUe0RSJo',
+    '6jZDSSZZxjQ',
+    'p2lYr3vM_1w',
+    '7QUtEmBT_-w',
+    '34_PXCzGw1M',
+  ]
+      .map<YoutubePlayerController>(
+        (videoId) => YoutubePlayerController(
+      initialVideoId: videoId,
+      flags: const YoutubePlayerFlags(
+        autoPlay: false,
+      ),
+    ),
+  )
+      .toList();
+
+  final List<String> _title = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+  ];
+
+  @override
+  void deactivate() {
+    // Pauses video while navigating to next page.
+    _controller.pause();
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _idController.dispose();
+    _seekToController.dispose();
+    super.dispose();
+  }
+
   @override
 
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kbase,
+      extendBodyBehindAppBar: true,
       appBar:  AppBar(
         backgroundColor: kpink,
         title: Padding(
@@ -41,6 +141,43 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
+      ),
+      body: ListView.separated(
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              //mainAxisAlignment: MainAxisAlignment.center,
+              //crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Text(
+                  _title[index],
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                YoutubePlayer(
+                  key: ObjectKey(_controllers[index]),
+                  controller: _controllers[index],
+                  actionsPadding: const EdgeInsets.only(left: 16.0),
+                  bottomActions: [
+                    CurrentPosition(),
+                    const SizedBox(width: 10.0),
+                    ProgressBar(isExpanded: true),
+                    const SizedBox(width: 10.0),
+                    RemainingDuration(),
+                    FullScreenButton(),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
+        itemCount: _controllers.length,
+        separatorBuilder: (context, _) => const SizedBox(height: 1.0),
       ),
       endDrawer:SidebarX(
         controller: SidebarXController(selectedIndex: 0, extended: true),
@@ -75,7 +212,9 @@ class _HomeScreenState extends State<HomeScreen> {
           SidebarXItem(icon: Icons.search, label: 'Search'),
         ],
       ),
-      bottomNavigationBar: Stack(
+      bottomNavigationBar: Container(
+        height: 90,
+        child: Stack(
         children: [
           Align(
             alignment: Alignment.bottomCenter,
@@ -239,6 +378,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+      )
     );
   }
 }
