@@ -7,7 +7,6 @@ import 'package:sidebarx/sidebarx.dart';
 import '../components/appBarInit.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-
 class HomeScreen extends StatefulWidget{
 static const String id="home_screen";
 const HomeScreen({Key?key}):super(key:key);
@@ -70,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   final List<YoutubePlayerController> _controllers = [
-    'gQDByCdjUXw',
+    'qS4ViqnjkC8',
     'iLnmTe5Q2Qw',
     '_WoCV4c6XOE',
     'KmzdUe0RSJo',
@@ -115,8 +114,9 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
-  @override
+  final items= [DropOne(), DropTwo(), DropThree()];
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kbase,
@@ -137,7 +137,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                     padding: const EdgeInsets.all(8.0), child: Text('PowerShe'))
               ],
-
             ),
           ),
         ),
@@ -165,11 +164,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       FullScreenButton(),
                     ],
                   ),
-                  Text(
-                    _title[index],
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  Padding(
+                    padding: EdgeInsets.all(15), //apply padding to all four sides
+                    child: Text(
+                      _title[index],
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ],
               ),
@@ -388,5 +391,32 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       )
     );
+  }
+}
+
+class DropOne extends StatelessWidget {
+  const DropOne({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
+class DropTwo extends StatelessWidget {
+  const DropTwo({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
+class DropThree extends StatelessWidget {
+  const DropThree({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
