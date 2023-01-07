@@ -260,7 +260,7 @@ class _OprScreenState extends State<OprScreen> {
                 child: ListView(
                   children: snapshot.data!.docs.map((document) {
                   return Container(
-                  child: CardLayout(url: document['url'],imageText: document['imageText'],subText: document['subText'],mainText: document['mainText']),
+                  child: CardLayout(url: document['url'],imageUrl: document['imageUrl'],subText: document['subText'],mainText: document['mainText']),
               );
             }).toList(),
           ),

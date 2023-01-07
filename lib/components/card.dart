@@ -14,15 +14,17 @@ import 'package:url_launcher/url_launcher.dart';
 
 class CardLayout extends StatelessWidget {
   final String url;
-  final String imageText;
+  // final String imageText;
   final String mainText;
   final String subText;
+  final String imageUrl;
 
   CardLayout(
       {required this.url,
-      required this.imageText,
+      // required this.imageText,
       required this.mainText,
-      required this.subText});
+      required this.subText,
+      required this.imageUrl});
 
 late Uri _url = Uri.parse(url);
 Future<void> _launchUrl() async {
@@ -47,45 +49,43 @@ Future<void> _launchUrl() async {
               //CircleAvatar
               //SizedBox
               //Text
-              SizedBox(
-                height: 10,
-              ),
 
               ClipRRect(
                 borderRadius: BorderRadius.circular(5),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 190,
+                  height: 120,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.fill,
-                      image: AssetImage('images/OprCard.png'),
+                      // image: AssetImage('images/OprCard.png),
+                      image: NetworkImage(imageUrl),
                     ),
                   ),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      width: 150.0,
-                      height: 150,
-                      margin: EdgeInsets.only(left: 10.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                          imageText,
-                          style: TextStyle(
-                            fontSize: 25.0,
-                          ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  // child: Align(
+                  //   alignment: Alignment.centerLeft,
+                  //   child: Container(
+                  //     width: 150.0,
+                  //     height: 150,
+                  //     margin: EdgeInsets.only(left: 10.0),
+                  //     child: Column(
+                  //       mainAxisAlignment: MainAxisAlignment.center,
+                  //       crossAxisAlignment: CrossAxisAlignment.start,
+                  //       children: [
+                  //         Text(
+                  //         imageText,
+                  //         style: TextStyle(
+                  //           fontSize: 25.0,
+                  //         ),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
                 ), // Container
               ), //Text
               SizedBox(
-                height: 15,
+                height: 5,
               ),
               Align(
                   alignment: Alignment.centerLeft,
@@ -105,7 +105,7 @@ Future<void> _launchUrl() async {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: 5,
               ),
               MaterialButton(
                 onPressed: _launchUrl,
