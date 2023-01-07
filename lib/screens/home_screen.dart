@@ -1,5 +1,6 @@
 import'package:flutter/material.dart';
 import'package:power_she_pre/constants.dart';
+// import 'package:power_she_pre/screens/safety_screen.dart';
 import'package:power_she_pre/screens/splash.dart';
 import'dart:async';
 import'package:power_she_pre/screens/welcome_screen.dart';
@@ -931,7 +932,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               // currentScreen = HomeScreen();
                               // currentTab = 0;
                             });
-                            // Navigator.pushNamed(context, AboutUs.id);
+                            Navigator.pushNamed(context, OprScreen.id);
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -995,6 +996,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: FloatingActionButton(
                   clipBehavior: Clip.none,
                   onPressed: () {
+                    // Navigator.pushNamed(context, SafetyScreen.id);
                   },
                   backgroundColor: kdblue,
                   child: CircleAvatar(

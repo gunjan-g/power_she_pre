@@ -11,6 +11,8 @@ import 'package:power_she_pre/screens/authentication/registration.dart';
 import 'package:power_she_pre/screens/welcome_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:power_she_pre/screens/opr_screen.dart';
+// import 'package:power_she_pre/screens/safety_screen.dart';
+import 'package:power_she_pre/screens/phone_details.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.dosisTextTheme(Theme.of(context).textTheme),
       ),
-      initialRoute: OnboardScreen.id,
+      initialRoute: SplashScreen.id,
       routes: {
         SplashScreen.id: (context) => const SplashScreen(),
         OnboardScreen.id: (context) => const OnboardScreen(),
@@ -38,6 +40,8 @@ class MyApp extends StatelessWidget {
         HomeScreen.id: (context) => const HomeScreen(),
         Course.id: (context) => const Course(),
         OprScreen.id: (context) => const OprScreen(),
+        // SafetyScreen.id: (context) => const SafetyScreen(),
+        PhoneDetails.id: (context) => const PhoneDetails(),
       },
     );
   }
