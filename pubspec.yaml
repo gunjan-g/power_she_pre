@@ -22,6 +22,7 @@ dependencies:
   custom_line_indicator_bottom_navbar: ^0.0.8
   curved_nav_bar: ^0.0.2
   sidebarx: ^0.14.0
+  youtube_player_flutter: ^8.1.2
 
 dev_dependencies:
   flutter_test:
