@@ -10,6 +10,7 @@ import 'package:power_she_pre/screens/authentication/login.dart';
 import 'package:power_she_pre/screens/authentication/registration.dart';
 import 'package:power_she_pre/screens/welcome_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:power_she_pre/screens/opr_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +37,9 @@ class MyApp extends StatelessWidget {
         LoginScreen.id: (context) => LoginScreen(),
         HomeScreen.id: (context) => const HomeScreen(),
         Course.id: (context) => const Course(),
+        OprScreen.id:(context)=>const OprScreen(),
       },
     );
   }
 }
+
