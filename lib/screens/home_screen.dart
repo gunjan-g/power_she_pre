@@ -120,8 +120,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kbase,
-      extendBodyBehindAppBar: true,
-      appBar:  AppBar(
+      //extendBodyBehindAppBar: true,
+      appBar: AppBar(
         backgroundColor: kpink,
         title: Padding(
           padding: const EdgeInsets.only(right: 0),
@@ -146,34 +146,42 @@ class _HomeScreenState extends State<HomeScreen> {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Column(
-              //mainAxisAlignment: MainAxisAlignment.center,
-              //crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Text(
-                  _title[index],
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+            child: Card(
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              child: Column(
+                //mainAxisAlignment: MainAxisAlignment.center,
+                //crossAxisAlignment: CrossAxisAlignment.stre
+                children: [
+                  YoutubePlayer(
+                    key: ObjectKey(_controllers[index]),
+                    controller: _controllers[index],
+                    actionsPadding: const EdgeInsets.only(left: 16.0),
+                    bottomActions: [
+                      CurrentPosition(),
+                      const SizedBox(width: 10.0),
+                      ProgressBar(isExpanded: true),
+                      const SizedBox(width: 10.0),
+                      RemainingDuration(),
+                      FullScreenButton(),
+                    ],
+                  ),
+                  Text(
+                    _title[index],
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(15),
+                  bottomRight: Radius.circular(15),
                 ),
-                SizedBox(
-                  height: 5.0,
-                ),
-                YoutubePlayer(
-                  key: ObjectKey(_controllers[index]),
-                  controller: _controllers[index],
-                  actionsPadding: const EdgeInsets.only(left: 16.0),
-                  bottomActions: [
-                    CurrentPosition(),
-                    const SizedBox(width: 10.0),
-                    ProgressBar(isExpanded: true),
-                    const SizedBox(width: 10.0),
-                    RemainingDuration(),
-                    FullScreenButton(),
-                  ],
-                ),
-              ],
-            ),
+              ),
+              elevation: 5,
+              margin: EdgeInsets.all(10),
+            )
           );
         },
         itemCount: _controllers.length,
