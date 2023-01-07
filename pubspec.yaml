@@ -16,13 +16,17 @@ dependencies:
   cupertino_icons: ^1.0.2
   cloud_firestore: ^4.3.1
   firebase_auth: ^4.2.5
-  firebase_core: ^2.4.1
   google_fonts: ^3.0.1
+  modal_progress_hud_nsn: ^0.3.0
   persistent_bottom_nav_bar_v2: ^4.2.6
+  country_code_picker: ^2.0.2
   custom_line_indicator_bottom_navbar: ^0.0.8
   curved_nav_bar: ^0.0.2
   sidebarx: ^0.14.0
   youtube_player_flutter: ^8.1.2
+  firebase_core: ^2.4.1
+  shared_preferences: ^2.0.15
+  introduction_screen: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -47,3 +51,8 @@ flutter:
     - family: Lustria
       fonts:
         - asset: fonts/Lustria-Regular.ttf
+
+    - family: CinzelDecorative
+      fonts:
+        - asset: fonts/CinzelDecorative-Black.ttf
+
