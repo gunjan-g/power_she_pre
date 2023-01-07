@@ -141,54 +141,98 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: ListView.separated(
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Card(
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: Column(
-                //mainAxisAlignment: MainAxisAlignment.center,
-                //crossAxisAlignment: CrossAxisAlignment.stre
+      body: Container(
+          child:Column(
+            children: [
+              ExpansionTile(
+                  title: Text("Videos 1"),
+                  leading: Icon(Icons.videocam), //add icon
+                  childrenPadding: EdgeInsets.only(left:60), //children padding
+                  children: [
+                    SizedBox(
+                      height: 500,
+                      child: ListView.separated(
+                        itemBuilder: (context, index) {
+                           return Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical:5.0),
+                              child: Card(
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                color: klblue,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15)
+                                ),
+                                elevation: 5,
+                                margin: EdgeInsets.all(10),
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                        height: 15.0
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 3.0),
+                                      child: YoutubePlayer(
+                                        key: ObjectKey(_controllers[index]),
+                                        controller: _controllers[index],
+                                        actionsPadding: const EdgeInsets.only(left: 16.0),
+                                        bottomActions: [
+                                          CurrentPosition(),
+                                          const SizedBox(width: 10.0),
+                                          ProgressBar(isExpanded: true),
+                                          const SizedBox(width: 10.0),
+                                          RemainingDuration(),
+                                          FullScreenButton(),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.all(5), //apply padding to all four sides
+                                      child: Text(
+                                        _title[index],
+                                        textAlign: TextAlign.center,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(
+                                            fontFamily: 'Lustria',
+                                            color: kdblue,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                          );
+                        },
+                        itemCount: _controllers.length,
+                        separatorBuilder: (context, _) => const SizedBox(height: 1.0),
+                      ),
+                    )
+                  ]
+              ),
+
+
+              ExpansionTile(
+                title: Text("Parent Category 2"),
+                leading: Icon(Icons.person), //add icon
+                childrenPadding: EdgeInsets.only(left:60), //children padding
                 children: [
-                  YoutubePlayer(
-                    key: ObjectKey(_controllers[index]),
-                    controller: _controllers[index],
-                    actionsPadding: const EdgeInsets.only(left: 16.0),
-                    bottomActions: [
-                      CurrentPosition(),
-                      const SizedBox(width: 10.0),
-                      ProgressBar(isExpanded: true),
-                      const SizedBox(width: 10.0),
-                      RemainingDuration(),
-                      FullScreenButton(),
-                    ],
+                  ListTile(
+                    title: Text("Child Category 1"),
+                    onTap: (){
+                      //action on press
+                    },
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(15), //apply padding to all four sides
-                    child: Text(
-                      _title[index],
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold),
-                    ),
+
+                  ListTile(
+                    title: Text("Child Category 2"),
+                    onTap: (){
+                      //action on press
+                    },
                   ),
+
+                  //more child menu
                 ],
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(15),
-                  bottomRight: Radius.circular(15),
-                ),
-              ),
-              elevation: 5,
-              margin: EdgeInsets.all(10),
-            )
-          );
-        },
-        itemCount: _controllers.length,
-        separatorBuilder: (context, _) => const SizedBox(height: 1.0),
+              )
+            ],
+          )
       ),
       endDrawer:SidebarX(
         controller: SidebarXController(selectedIndex: 0, extended: true),
