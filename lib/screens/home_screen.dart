@@ -6,7 +6,7 @@ import'package:power_she_pre/screens/welcome_screen.dart';
 import 'package:sidebarx/sidebarx.dart';
 import '../components/appBarInit.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
+import 'package:power_she_pre/screens/opr_screen.dart';
 
 class HomeScreen extends StatefulWidget{
 static const String id="home_screen";
@@ -337,7 +337,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               // currentScreen = HomeScreen();
                               // currentTab = 0;
                             });
-                            // Navigator.pushNamed(context, UserProfile.id);
+                            Navigator.pushNamed(context, OprScreen.id);
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,

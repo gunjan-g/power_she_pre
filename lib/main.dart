@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.dosisTextTheme(Theme.of(context).textTheme),
       ),
-      initialRoute: SplashScreen.id,
+      initialRoute: OnboardScreen.id,
       routes: {
         SplashScreen.id: (context) => const SplashScreen(),
         OnboardScreen.id: (context) => const OnboardScreen(),
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.id: (context) => LoginScreen(),
         HomeScreen.id: (context) => const HomeScreen(),
         Course.id: (context) => const Course(),
-        OprScreen.id:(context)=>const OprScreen(),
+        OprScreen.id: (context) => const OprScreen(),
       },
     );
   }
