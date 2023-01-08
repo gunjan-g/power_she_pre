@@ -15,8 +15,9 @@ import 'package:power_she_pre/screens/store.dart';
 import 'package:power_she_pre/screens/welcome_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:power_she_pre/screens/opr_screen.dart';
-// import 'package:power_she_pre/screens/safety_screen.dart';
 import 'package:power_she_pre/screens/phone_details.dart';
+import 'package:power_she_pre/screens/user_profile.dart';
+import 'package:power_she_pre/screens/safety_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
         OprScreen.id: (context) => const OprScreen(),
         SafetyScreen.id: (context) => const SafetyScreen(),
         PhoneDetails.id: (context) => const PhoneDetails(),
+        UserProfile.id: (context) => const UserProfile(),
       },
     );
   }

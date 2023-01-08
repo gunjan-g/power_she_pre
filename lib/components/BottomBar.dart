@@ -1,5 +1,6 @@
 import'package:flutter/material.dart';
 import'package:power_she_pre/constants.dart';
+import 'package:power_she_pre/screens/home_screen.dart';
 
 import '../screens/opr_screen.dart';
 import '../screens/safety_screen.dart';
@@ -34,7 +35,7 @@ class BottomBar extends StatelessWidget {
                           onPressed: () {
 
 
-                            // Navigator.pushNamed(context, UploadImage.id);
+                            Navigator.pushNamed(context, HomeScreen.id);
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -165,7 +166,7 @@ class BottomBar extends StatelessWidget {
           ),
         ],
       ),
-    );;
+    );
   }
 }
 
