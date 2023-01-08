@@ -33,6 +33,7 @@ class _SplashScreenLocationState extends State<SplashScreenLocation> {
     Future.delayed(Duration(seconds: 10)).then((value) => Navigator.of(context)
         .pushReplacement(MaterialPageRoute(builder: (context) => HomePage())));
   }
+  //
 
   @override
   Widget build(BuildContext context) {
