@@ -72,6 +72,10 @@ flutter:
       fonts:
         - asset: fonts/Lustria-Regular.ttf
 
+    - family: CinzelDecorative
+      fonts:
+          - asset: fonts/CinzelDecorative-Black.ttf
+
     - family: WorkSans
       fonts:
           - asset: fonts/WorkSans-Regular.ttf
