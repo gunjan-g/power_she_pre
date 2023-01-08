@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:power_she_pre/screens/orders.dart';
+import 'package:power_she_pre/screens/welcome_screen.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:power_she_pre/constants.dart';
 import 'package:power_she_pre/screens/user_profile.dart';
@@ -30,21 +31,23 @@ class EndDrawer extends StatelessWidget {
             itemTextPadding: EdgeInsets.only(left: 20),
           ),
           items: [
-            SidebarXItem(icon: Icons.home, label: 'Profile', onTap: () {
+            SidebarXItem(icon: Icons.account_circle_rounded, label: 'Profile', onTap: () {
               Navigator.pushNamed(context, UserProfile.id);
             }),
             SidebarXItem(
-                icon: Icons.search,
+                icon: Icons.shopping_cart_rounded,
                 label: 'My Orders',
                 onTap: () {
                   Navigator.pushNamed(context, OrderScreen.id);
                 }),
             SidebarXItem(
-                icon: Icons.add_box, label: 'My Products', onTap: () {}),
+                icon: Icons.sell, label: 'My Products', onTap: () {}),
             SidebarXItem(
-                icon: Icons.arrow_back_ios_new_outlined,
+                icon: Icons.logout_rounded ,
                 label: 'Logout',
-                onTap: () {}),
+                onTap: () {
+                  Navigator.pushNamed(context, WelcomeScreen.id);
+                }),
           ],
         );
   }
