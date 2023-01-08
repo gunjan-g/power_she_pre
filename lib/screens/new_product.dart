@@ -123,7 +123,10 @@ class _NewProductState extends State<NewProduct> {
                         hintText: 'e.g. 499',labelText: 'Price (in INR)'),
                   ),
                 ),
-                TextButton(onPressed: ()async{
+                TextButton(
+
+                    onPressed: ()async{
+
                   setState(() {
                     spinner=true;
                   });
@@ -134,7 +137,11 @@ class _NewProductState extends State<NewProduct> {
                 });
                 }, child:Text('Upload Image')),
 
-                TextButton(onPressed: () async {
+                TextButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(kpink)
+                  ),
+                    onPressed: () async {
                   setState(
                           () {
                         spinner =
@@ -190,7 +197,7 @@ class _NewProductState extends State<NewProduct> {
                         spinner =
                         false;
                       });
-                }, child: Text('Save')),
+                }, child: Text('Save',style: TextStyle(color:Colors.white),)),
               ],
             ),
           ),
