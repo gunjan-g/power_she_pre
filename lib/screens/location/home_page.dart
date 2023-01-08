@@ -75,7 +75,6 @@ class _HomePageState extends ConsumerState<HomePage> {
   TextEditingController _destinationController = TextEditingController();
 
   static const LatLng sourceLocation = LatLng(37.33500926, -122.03272188);
-  static const LatLng destination = LatLng(37.33429383, -122.06600055);
   BitmapDescriptor sourceIcon = BitmapDescriptor.defaultMarker;
   BitmapDescriptor destinationIcon = BitmapDescriptor.defaultMarker;
   BitmapDescriptor currentLocationIcon = BitmapDescriptor.defaultMarker;
@@ -109,7 +108,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       },
     );
     GoogleMapController googleMapController = await _controller.future;
-    location.onLocationChanged().listen(
+    location.onLocationChanged.listen(
           (newLoc) {
         currentLocation = newLoc;
         googleMapController.animateCamera(
@@ -206,30 +205,18 @@ class _HomePageState extends ConsumerState<HomePage> {
         .asUint8List();
   }
   BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
-  void setCustomMarkerIcon() {
+
+  void addCustomIcon() {
     BitmapDescriptor.fromAssetImage(
-        ImageConfiguration.empty, "assets/Pin_source.png")
+        const ImageConfiguration(), "assets/pin.png")
         .then(
           (icon) {
-        sourceIcon = icon;
-      },
-    );
-    BitmapDescriptor.fromAssetImage(
-        ImageConfiguration.empty, "assets/Pin_destination.png")
-        .then(
-          (icon) {
-        destinationIcon = icon;
-      },
-    );
-    BitmapDescriptor.fromAssetImage(
-        ImageConfiguration.empty, "assets/Badge.png")
-        .then(
-          (icon) {
-        currentLocationIcon = icon;
+        setState(() {
+          markerIcon = icon;
+        });
       },
     );
   }
-
 
   @override
   void initState() {
@@ -237,7 +224,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     _pageController = PageController(initialPage: 1, viewportFraction: 0.85)
       ..addListener(_onScroll);
     getCurrentLocation();
-    setCustomMarkerIcon();
+    addCustomIcon();
     super.initState();
   }
 
@@ -289,25 +276,18 @@ class _HomePageState extends ConsumerState<HomePage> {
                     mapType: MapType.normal,
                     markers: {
                       Marker(
-                        markerId: const MarkerId("currentLocation"),
-                        icon: currentLocationIcon,
-                        position: LatLng(
-                            currentLocation!.latitude!, currentLocation!.longitude!),
-                      ),
-                      Marker(
-                        markerId: MarkerId("source"),
-                        position: sourceLocation,
-                        icon: sourceIcon,
+                        markerId: const MarkerId("marker1"),
+                        position: const LatLng(37.422131, -122.084801),
                         draggable: true,
                         onDragEnd: (value) {
                           // value is the new position
                         },
+                        icon: markerIcon,
                       ),
 
                       Marker(
-                        markerId: MarkerId("destination"),
-                        icon: destinationIcon,
-                        position: destination,
+                        markerId: const MarkerId("marker2"),
+                        position: const LatLng(37.415768808487435, -122.08440050482749),
                       ),
                     },
                     polylines: _polylines,
