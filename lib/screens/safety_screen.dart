@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:power_she_pre/components/AppBarHome.dart';
+import 'package:power_she_pre/components/EndDrawer.dart';
 import 'package:power_she_pre/constants.dart';
 import 'package:power_she_pre/components/card.dart';
 import 'package:power_she_pre/screens/opr_screen.dart';
@@ -49,39 +50,7 @@ class _SafetyScreenState extends State<SafetyScreen> {
     return Scaffold(
       backgroundColor: kbase,
       appBar: AppBarHome(),
-      endDrawer:SidebarX(
-        controller: SidebarXController(selectedIndex: 0, extended: true),
-        theme: SidebarXTheme(
-          selectedItemDecoration: BoxDecoration(
-              color:kpink
-          ),
-          // padding: EdgeInsets.all(20),
-          width:200,
-          decoration: BoxDecoration(
-              color: klblue
-          ),
-          textStyle: TextStyle(
-            fontSize:20,
-            color: kdblue,
-          ),
-          selectedTextStyle: TextStyle(
-            fontSize: 20,
-            color:kbase,
-          ),
-          selectedIconTheme: IconThemeData(
-              color: kbase
-          ),
-          iconTheme: IconThemeData(
-              color: kdblue
-          ),
-          selectedItemTextPadding: EdgeInsets.only(left:20),
-          itemTextPadding: EdgeInsets.only(left:20),
-        ),
-        items: [
-          SidebarXItem(icon: Icons.home, label: 'Home',onTap:(){}),
-          SidebarXItem(icon: Icons.search, label: 'Search'),
-        ],
-      ),
+      endDrawer:EndDrawer(),
       bottomNavigationBar: BottomBar(),
       body: ModalProgressHUD(
         inAsyncCall: spinner,
