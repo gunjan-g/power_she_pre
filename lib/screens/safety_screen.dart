@@ -5,6 +5,7 @@ import 'package:power_she_pre/components/AppBarHome.dart';
 import 'package:power_she_pre/components/EndDrawer.dart';
 import 'package:power_she_pre/constants.dart';
 import 'package:power_she_pre/components/card.dart';
+import 'package:power_she_pre/screens/location/location.dart';
 import 'package:power_she_pre/screens/opr_screen.dart';
 import'package:power_she_pre/screens/splash.dart';
 import'dart:async';
@@ -64,7 +65,8 @@ class _SafetyScreenState extends State<SafetyScreen> {
             Expanded(
               child: GestureDetector(
                 onTap: (){
-                  // print("Location");
+                  print("Location");
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => Location()));
                 },
                 child: Image(
                   // width: 1.0,

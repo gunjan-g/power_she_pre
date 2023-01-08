@@ -3,12 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import './home_page.dart';
 import 'package:lottie/lottie.dart';
 
-void main() {
-  runApp(const ProviderScope(child: MyApp()));
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Location extends StatelessWidget {
+  const Location({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
