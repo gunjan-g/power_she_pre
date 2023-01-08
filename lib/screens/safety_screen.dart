@@ -64,18 +64,6 @@ class _SafetyScreenState extends State<SafetyScreen> {
           children: <Widget>[
             Expanded(
               child: GestureDetector(
-                onTap: (){
-                  print("Location");
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => Location()));
-                },
-                child: Image(
-                  // width: 1.0,
-                  image: AssetImage('images/Location.png'),
-                ),
-              ),
-            ),
-            Expanded(
-              child: GestureDetector(
                 onTap: ()async{
                   //
 
@@ -98,8 +86,6 @@ class _SafetyScreenState extends State<SafetyScreen> {
                       print('Cannot launch this url!');
                     }
                   }
-
-
                 },
                 child: Image(
                   // width: 1.0,

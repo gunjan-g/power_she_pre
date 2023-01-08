@@ -1,7 +1,7 @@
 import'package:flutter/material.dart';
 import'package:power_she_pre/constants.dart';
 import 'package:power_she_pre/screens/home_screen.dart';
-
+import 'package:power_she_pre/screens/map/location.dart';
 import '../screens/opr_screen.dart';
 import '../screens/safety_screen.dart';
 import '../screens/store.dart';
@@ -92,7 +92,6 @@ class BottomBar extends StatelessWidget {
                         MaterialButton(
                           minWidth: 40,
                           onPressed: () {
-
                             Navigator.pushNamed(context, OprScreen.id);
                           },
                           child: Column(
@@ -116,19 +115,18 @@ class BottomBar extends StatelessWidget {
                         MaterialButton(
                           minWidth: 40,
                           onPressed: () {
-
-                            // Navigator.pushNamed(context, UserProfile.id);
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => Location()));
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               Icon(
-                                Icons.groups,
+                                Icons.place,
                                 color: Colors.white,
                                 size: 20,
                               ),
                               Text(
-                                'Support',
+                                'Safe Location',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
