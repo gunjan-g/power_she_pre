@@ -12,6 +12,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import './auto_complete_result.dart';
 import './search_places.dart';
 import './map_services.dart';
+import 'package:location/location.dart';
 
 import 'dart:ui' as ui;
 
@@ -61,7 +62,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   bool isReviews = true;
   bool isPhotos = false;
 
-  final key = '<yourkeyhere>';
+  final key = 'AIzaSyAjC6202vyph82TLRDW5bXbXCmC0Oelip4';
 
   var selectedPlaceDetails;
 
@@ -72,6 +73,12 @@ class _HomePageState extends ConsumerState<HomePage> {
   TextEditingController searchController = TextEditingController();
   TextEditingController _originController = TextEditingController();
   TextEditingController _destinationController = TextEditingController();
+
+  static const LatLng sourceLocation = LatLng(37.33500926, -122.03272188);
+  static const LatLng destination = LatLng(37.33429383, -122.06600055);
+  BitmapDescriptor sourceIcon = BitmapDescriptor.defaultMarker;
+  BitmapDescriptor destinationIcon = BitmapDescriptor.defaultMarker;
+  BitmapDescriptor currentLocationIcon = BitmapDescriptor.defaultMarker;
 
 //Initial map position on load
   static final CameraPosition _kGooglePlex = CameraPosition(
@@ -91,6 +98,34 @@ class _HomePageState extends ConsumerState<HomePage> {
     setState(() {
       _markers.add(marker);
     });
+  }
+
+  LocationData? currentLocation;
+  void getCurrentLocation() async {
+    Location location = Location();
+    location.getLocation().then(
+          (location) {
+        currentLocation = location;
+      },
+    );
+    GoogleMapController googleMapController = await _controller.future;
+    location.onLocationChanged().listen(
+          (newLoc) {
+        currentLocation = newLoc;
+        googleMapController.animateCamera(
+          CameraUpdate.newCameraPosition(
+            CameraPosition(
+              zoom: 13.5,
+              target: LatLng(
+                newLoc.latitude!,
+                newLoc.longitude!,
+              ),
+            ),
+          ),
+        );
+        setState(() {});
+      },
+    );
   }
 
   void _setPolyline(List<PointLatLng> points) {
@@ -170,12 +205,39 @@ class _HomePageState extends ConsumerState<HomePage> {
         .buffer
         .asUint8List();
   }
+  BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
+  void setCustomMarkerIcon() {
+    BitmapDescriptor.fromAssetImage(
+        ImageConfiguration.empty, "assets/Pin_source.png")
+        .then(
+          (icon) {
+        sourceIcon = icon;
+      },
+    );
+    BitmapDescriptor.fromAssetImage(
+        ImageConfiguration.empty, "assets/Pin_destination.png")
+        .then(
+          (icon) {
+        destinationIcon = icon;
+      },
+    );
+    BitmapDescriptor.fromAssetImage(
+        ImageConfiguration.empty, "assets/Badge.png")
+        .then(
+          (icon) {
+        currentLocationIcon = icon;
+      },
+    );
+  }
+
 
   @override
   void initState() {
     // TODO: implement initState
     _pageController = PageController(initialPage: 1, viewportFraction: 0.85)
       ..addListener(_onScroll);
+    getCurrentLocation();
+    setCustomMarkerIcon();
     super.initState();
   }
 
@@ -225,13 +287,39 @@ class _HomePageState extends ConsumerState<HomePage> {
                   width: screenWidth,
                   child: GoogleMap(
                     mapType: MapType.normal,
-                    markers: _markers,
+                    markers: {
+                      Marker(
+                        markerId: const MarkerId("currentLocation"),
+                        icon: currentLocationIcon,
+                        position: LatLng(
+                            currentLocation!.latitude!, currentLocation!.longitude!),
+                      ),
+                      Marker(
+                        markerId: MarkerId("source"),
+                        position: sourceLocation,
+                        icon: sourceIcon,
+                        draggable: true,
+                        onDragEnd: (value) {
+                          // value is the new position
+                        },
+                      ),
+
+                      Marker(
+                        markerId: MarkerId("destination"),
+                        icon: destinationIcon,
+                        position: destination,
+                      ),
+                    },
                     polylines: _polylines,
                     circles: _circles,
                     initialCameraPosition: _kGooglePlex,
                     onMapCreated: (GoogleMapController controller) {
                       _controller.complete(controller);
                     },
+                    mapToolbarEnabled: true,
+                    buildingsEnabled: false,
+                    myLocationButtonEnabled: true,
+                    zoomControlsEnabled: true,
                     onTap: (point) {
                       tappedPoint = point;
                       _setCircle(point);
