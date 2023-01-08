@@ -866,7 +866,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () {}),
           ],
         ),
-        endDrawer: EndDrawer(),
+        // endDrawer: EndDrawer(),//
         bottomNavigationBar: BottomBar());
   }
 
