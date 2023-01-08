@@ -5,6 +5,8 @@ import 'package:sidebarx/sidebarx.dart';
 import 'package:power_she_pre/constants.dart';
 import 'package:power_she_pre/screens/user_profile.dart';
 
+import '../screens/my_products.dart';
+
 class EndDrawer extends StatelessWidget {
   const EndDrawer({super.key});
 
@@ -41,7 +43,9 @@ class EndDrawer extends StatelessWidget {
                   Navigator.pushNamed(context, OrderScreen.id);
                 }),
             SidebarXItem(
-                icon: Icons.sell, label: 'My Products', onTap: () {}),
+                icon: Icons.sell, label: 'My Products', onTap: () {
+              Navigator.pushNamed(context, MyProducts.id);
+            }),
             SidebarXItem(
                 icon: Icons.logout_rounded ,
                 label: 'Logout',

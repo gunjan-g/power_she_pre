@@ -138,7 +138,7 @@ class _StoreScreenState extends State<StoreScreen> {
                                                         radius: 24,
                                                         backgroundImage:
                                                             AssetImage(
-                                                                'images/logo.png'),
+                                                                'images/Profile.png'),
                                                       ),
                                                     ),
                                                     // getName(documents[index]['sell_id'])
