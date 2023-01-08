@@ -126,7 +126,7 @@ class BottomBar extends StatelessWidget {
                                 size: 20,
                               ),
                               Text(
-                                'Safe Location',
+                                'Location',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
