@@ -1,30 +1,30 @@
-import 'package:flutter/material.dart';
-import 'package:power_she_pre/components/AppBarHome.dart';
-import 'package:power_she_pre/components/AppButton.dart';
-import 'package:power_she_pre/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:power_she_pre/constants.dart';
 
-import '../components/AlertBox.dart';
+import '../components/AppBarHome.dart';
+import 'new_product.dart';
 
-class OrderScreen extends StatefulWidget {
-  static const String id = "order_screen";
-  const OrderScreen({Key? key}) : super(key: key);
+class MyProducts extends StatefulWidget {
+  static const String id = "my_products";
+  const MyProducts({Key? key}) : super(key: key);
 
   @override
-  State<OrderScreen> createState() => _OrderScreenState();
+  State<MyProducts> createState() => _MyProductsState();
 }
 
-class _OrderScreenState extends State<OrderScreen> {
+class _MyProductsState extends State<MyProducts> {
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
   late User loggedInUser;
   String userId='';
-  late Stream<QuerySnapshot> selectedDoc;
   String userName='';
   bool spinner = false;
   int currVal=0;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -37,17 +37,7 @@ class _OrderScreenState extends State<OrderScreen> {
         loggedInUser = user;
         userId = user.uid;
       });
-      getDoc();
     }
-  }
-
-  void getDoc() async {
-    final docref = await _firestore.collection("details").doc(userId).get();
-    setState(() {
-      userName = docref['Name'];
-      print(userName);
-      print(userId);
-    });
   }
 
   @override
@@ -65,6 +55,38 @@ class _OrderScreenState extends State<OrderScreen> {
           child: SafeArea(
             child: Column(
               children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: MaterialButton(
+                onPressed: (){
+                  Navigator.pushNamed(context, NewProduct.id);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.add_box_outlined,size: 18,color: Colors.white,),
+                      SizedBox(width: 7,),
+                      Text(
+                        'Add New Product',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                color: kdblue,
+                minWidth: 150,
+                elevation: 5.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+            ),
+              ),
                 FutureBuilder(
                   future: Future.value(_auth.currentUser!.uid),
                   builder: (context, futureSnapshot) {
@@ -85,7 +107,7 @@ class _OrderScreenState extends State<OrderScreen> {
                       // <2> Pass `Stream<QuerySnapshot>` to stream
                         stream: _firestore
                             .collection('store')
-                            .where('buy_id', isEqualTo: futureSnapshot.data)
+                            .where('sell_id', isEqualTo: futureSnapshot.data)
                             .snapshots(),
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
@@ -106,7 +128,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                       width: double.infinity,
                                       height:
                                       MediaQuery.of(context).size.height *
-                                          0.2,
+                                          0.3,
                                       child: Card(
                                         elevation: 10,
                                         shadowColor: Colors.black,
@@ -116,15 +138,15 @@ class _OrderScreenState extends State<OrderScreen> {
                                           height: MediaQuery.of(context)
                                               .size
                                               .height *
-                                              0.2,
+                                              0.3,
                                           child: Padding(
                                             padding: const EdgeInsets.all(20.0),
                                             child: Row(
                                               children: [
-                                                Container(height: 100,width: 100,
-                                                decoration: BoxDecoration(
-                                                  image:DecorationImage(image:NetworkImage(documents[index]['image']),fit: BoxFit.fill)
-                                                ),
+                                                Container(height: 200,width: 130,
+                                                  decoration: BoxDecoration(
+                                                      image:DecorationImage(image:NetworkImage(documents[index]['image']),fit: BoxFit.fill)
+                                                  ),
                                                 ),
                                                 SizedBox(
                                                   width: 10,
@@ -136,29 +158,103 @@ class _OrderScreenState extends State<OrderScreen> {
                                                       crossAxisAlignment: CrossAxisAlignment.start,
                                                       children: [
                                                         Text(documents[index]['product_name'],style:TextStyle(fontSize: 18)),
-                                                      Text(
-                                                          "₹"+documents[index]['price'].toString(),
-                                                          style:TextStyle(fontStyle: FontStyle.italic)
-                                                      ),
-                                                        Row(
+                                                        Text(
+                                                            "₹"+documents[index]['price'].toString(),
+                                                            style:TextStyle(fontStyle: FontStyle.italic)
+                                                        ),
+                                                        Column(
                                                           children: [
-                                                            TextButton(
-                                                              onPressed: () {},
-                                                              child: Container(
-                                                                color: getColor(documents[index]['order_now'],documents[index]['confirm'],documents[index]['delivered']),
-                                                                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                                                                child: Text(
-                                                                  getText(documents[index]['order_now'],documents[index]['confirm'],documents[index]['delivered']),
-                                                                  style: TextStyle(color: Colors.white, fontSize: 13.0),
-                                                                ),
-                                                              ),
+                                                            // TextButton(
+                                                            //   onPressed: () {},
+                                                            //   child: Container(
+                                                            //     color: getColor(documents[index]['order_now'],documents[index]['confirm'],documents[index]['delivered']),
+                                                            //     padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                                            //     child: Text(
+                                                            //       getText(documents[index]['order_now'],documents[index]['confirm'],documents[index]['delivered']),
+                                                            //       style: TextStyle(color: Colors.white, fontSize: 13.0),
+                                                            //     ),
+                                                            //   ),
+                                                            // )
+                                                            SizedBox(
+                                                              height: 30,
                                                             ),
+                                                            documents[index]['order_now']==false?
+                                                                TextButton(
+                                                                  style: ButtonStyle(
+                                                                    backgroundColor: MaterialStateProperty.all<Color>(kpink),
+                                                                    shape: MaterialStateProperty.all(
+                                                                      RoundedRectangleBorder(
+                                                                        borderRadius: BorderRadius.circular(30.0),
+                                                                        side: BorderSide(width: 2,),
 
-                                                            TextButton(
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  onPressed: (){},
+                                                                  child:Container(
+                                                                    // color:Colors.grey,
+                                                                    padding:const EdgeInsets.symmetric(vertical: 2, horizontal: 10) ,
+                                                                    child: Text(
+                                                                      'In store',
+                                                                      style:TextStyle(color: Colors.white,fontSize: 13.0),
+                                                                    ),
+                                                                  )
+                                                                ):(documents[index]['confirm'] && !documents[index]['delivered'])?
+                                                                OutlinedButton(onPressed:() async {
+                                                                  setState(
+                                                                          () {
+                                                                        spinner =
+                                                                        true;
+                                                                      });
+                                                                  await _firestore
+                                                                      .collection(
+                                                                      'store')
+                                                                      .doc(
+                                                                      documents[index]
+                                                                          .id)
+                                                                      .update(
+                                                                      {
+                                                                        'delivered': true,
+                                                                      });
+                                                                  setState(
+                                                                          () {
+                                                                        spinner =
+                                                                        false;
+                                                                      });
+                                                                } , child: Text(
+                                                                  'Confirm Delivery',style: TextStyle(color: Colors.red
+                                                                ))):(documents[index]['delivered'])?
+                                                            OutlinedButton(onPressed:(){} , child: Text(
+                                                                'Delivered',style: TextStyle(color: Colors.white )),style: ButtonStyle(backgroundColor:MaterialStateProperty.all<Color>(Colors.green) ),):
+                                                            OutlinedButton(onPressed:() async {
+                                                              setState(
+                                                                      () {
+                                                                    spinner =
+                                                                    true;
+                                                                  });
+                                                              await _firestore
+                                                                  .collection(
+                                                                  'store')
+                                                                  .doc(
+                                                                  documents[index]
+                                                                      .id)
+                                                                  .update(
+                                                                  {
+                                                                    'confirm': true,
+                                                                  });
+                                                              setState(
+                                                                      () {
+                                                                    spinner =
+                                                                    false;
+                                                                  });
+                                                            } , child: Text(
+                                                              'Confirm  Order' ,style: TextStyle(color: Colors.orange)),)
+                                                            ,
+                                                            (documents[index]['order_now'])?TextButton(
                                                               onPressed: () async{
 
 
-                                                                final docref = await _firestore.collection("details").doc(documents[index]['sell_id']).get();
+                                                                final docref = await _firestore.collection("details").doc(documents[index]['buy_id']).get();
                                                                 String email=docref['Email'];
                                                                 String phone=docref['Phone'];
                                                                 print(email+" "+phone);
@@ -171,7 +267,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                                                   context) {
                                                                     return AlertDialog(
                                                                       title: Text(
-                                                                          "Details of the seller"),
+                                                                          "Details of the buyer"),
                                                                       content:
                                                                       SingleChildScrollView(
                                                                         child: ListBody(
@@ -219,11 +315,11 @@ class _OrderScreenState extends State<OrderScreen> {
                                                                   style: TextStyle(color: Colors.white, fontSize: 13.0),
                                                                 ),
                                                               ),
-                                                            ),
+                                                            ):TextButton(onPressed: (){}, child: Container())
                                                           ],
                                                         )
 
-                                                    ],)
+                                                      ],)
                                                   ],
                                                 ),
                                                 Expanded(
@@ -234,53 +330,6 @@ class _OrderScreenState extends State<OrderScreen> {
                                                     children: [
                                                       InkWell(
                                                         onTap: () {
-                                                          if(documents[index]['confirm']){
-                                                            showDialog<void>(
-                                                              context: context,
-                                                              barrierDismissible:
-                                                              false, // user must tap button!
-                                                              builder: (BuildContext
-                                                              context) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'You cannot cancel the product now'),
-                                                                  content:
-                                                                  SingleChildScrollView(
-                                                                    child: ListBody(
-                                                                      children: const <
-                                                                          Widget>[
-                                                                        Text(
-                                                                            'Please file a return once the product reaches you'),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                  actions: <Widget>[
-                                                                    TextButton(
-                                                                      child:
-                                                                      const Text(
-                                                                        'Ok',
-                                                                        style:
-                                                                        TextStyle(
-                                                                          fontSize:
-                                                                          18,
-                                                                          color:
-                                                                          kpink,
-                                                                        ),
-                                                                      ),
-                                                                      onPressed:
-                                                                          ()  {
-                                                                        Navigator.of(
-                                                                            context)
-                                                                            .pop();
-
-                                                                      },
-                                                                    ),
-                                                                  ],
-                                                                );
-                                                                ;
-                                                              },
-                                                            );
-                                                          }else {
                                                             showDialog<void>(
                                                               context: context,
                                                               barrierDismissible:
@@ -291,14 +340,14 @@ class _OrderScreenState extends State<OrderScreen> {
                                                                   context) {
                                                                 return AlertDialog(
                                                                   title: Text(
-                                                                      'Are you sure you want to unorder this product?'),
+                                                                      'Are you sure you want to delete this product?'),
                                                                   content:
                                                                   SingleChildScrollView(
                                                                     child: ListBody(
                                                                       children: const <
                                                                           Widget>[
                                                                         Text(
-                                                                            'You can delete only until the order is unconfirmed'),
+                                                                            ''),
                                                                       ],
                                                                     ),
                                                                   ),
@@ -327,18 +376,19 @@ class _OrderScreenState extends State<OrderScreen> {
                                                                               spinner =
                                                                               true;
                                                                             });
-                                                                        await _firestore
-                                                                            .collection(
-                                                                            'store')
-                                                                            .doc(
-                                                                            documents[index]
-                                                                                .id)
-                                                                            .update(
-                                                                            {
-                                                                              'order_now': false,
-                                                                              'buy_id': "",
-                                                                              'buyer_name': "",
+                                                                        await _firestore.runTransaction(
+                                                                                (Transaction
+                                                                            myTransaction) async {
+                                                                              await myTransaction
+                                                                                  .delete(
+                                                                                  documents[index].reference);
                                                                             });
+                                                                        FirebaseStorage
+                                                                            .instance
+                                                                            .refFromURL(documents[index]
+                                                                        [
+                                                                        'image'])
+                                                                            .delete();
                                                                         setState(
                                                                                 () {
                                                                               spinner =
@@ -351,7 +401,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                                                 ;
                                                               },
                                                             );
-                                                          }
+
                                                         },
                                                         child: Icon(
                                                           Icons.delete,
@@ -392,27 +442,4 @@ class _OrderScreenState extends State<OrderScreen> {
       ),
     );
   }
-
-  String getText(bool o, bool c, bool d) {
-    if(d){
-      return 'delivered';
-    }else if(c){
-      return 'confirmed';
-    }else{
-      return 'ordered';
-    }
-  }
 }
-
-Color getColor(bool o, bool c, bool d){
-  if(d){
-    return Colors.green;
-  }else if(c){
-    return Colors.orange;
-  }else{
-    return Colors.grey;
-  }
-}
-
-
-

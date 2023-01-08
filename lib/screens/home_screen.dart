@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:power_she_pre/constants.dart';
+import 'package:power_she_pre/screens/my_products.dart';
 import 'package:power_she_pre/screens/splash.dart';
 import 'package:power_she_pre/screens/store.dart';
 import 'dart:async';
@@ -857,7 +858,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Navigator.pushNamed(context, OrderScreen.id);
                 }),
             SidebarXItem(
-                icon: Icons.add_box, label: 'My Products', onTap: () {}),
+                icon: Icons.add_box, label: 'My Products', onTap: () {Navigator.pushNamed(context, MyProducts.id);}),
             SidebarXItem(
                 icon: Icons.arrow_back_ios_new_outlined,
                 label: 'Logout',

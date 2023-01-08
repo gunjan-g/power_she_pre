@@ -20,3 +20,25 @@ const kTextFieldDecoration = InputDecoration(
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
 );
+
+const kProductFieldDecoration = InputDecoration(
+  hintText: 'Enter value',
+  labelText:'Enter label',
+  labelStyle: TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 15,
+    color: kdblue
+    ),
+  contentPadding: EdgeInsets.symmetric(vertical: 7.0, horizontal: 10.0),
+  border: OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+  ),
+  enabledBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: kpink, width: 1.0),
+    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+  ),
+  focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: kpink, width: 1.5),
+    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+  ),
+);

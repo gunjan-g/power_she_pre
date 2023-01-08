@@ -32,6 +32,7 @@ dependencies:
   url_launcher: ^6.1.7
   youtube_player_flutter: ^8.1.2
   shared_preferences: ^2.0.15
+  firebase_storage: ^11.0.10
 
 dev_dependencies:
   flutter_test:

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:power_she_pre/screens/gender_auth/selfie_upload.dart';
+import 'package:power_she_pre/screens/my_products.dart';
+import 'package:power_she_pre/screens/new_product.dart';
 import 'package:power_she_pre/screens/onboard/onboardScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:power_she_pre/screens/course.dart';
@@ -17,7 +19,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:power_she_pre/screens/opr_screen.dart';
 // import 'package:power_she_pre/screens/safety_screen.dart';
 import 'package:power_she_pre/screens/phone_details.dart';
-
+import 'package:power_she_pre/screens/my_products.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: const SplashScreen(),
       theme: ThemeData(
-        textTheme: GoogleFonts.robotoTextTheme(Theme.of(context).textTheme),
+        textTheme: GoogleFonts.openSansTextTheme(Theme.of(context).textTheme),
       ),
       initialRoute: SplashScreen.id,
       routes: {
@@ -50,6 +52,8 @@ class MyApp extends StatelessWidget {
         OprScreen.id: (context) => const OprScreen(),
         SafetyScreen.id: (context) => const SafetyScreen(),
         PhoneDetails.id: (context) => const PhoneDetails(),
+        MyProducts.id:(context)=>const MyProducts(),
+        NewProduct.id:(context)=>const NewProduct(),
       },
     );
   }
