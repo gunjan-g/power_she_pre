@@ -85,7 +85,7 @@ class _SelfieUploadState extends State<SelfieUpload> {
           child: SafeArea(
             child: Column(
               children: [
-                AppBarInit(),
+                AppBar(backgroundColor: kpink,),
                 Container(
                   child: imageFile == null
                       ? Container(
@@ -143,26 +143,26 @@ class _SelfieUploadState extends State<SelfieUpload> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            TextButton(
-                              child: Text(
-                                'Skip to Home',
-                                style: TextStyle(
-                                    shadows: [
-                                      Shadow(
-                                          color: kdblue,
-                                          offset: Offset(0, -5))
-                                    ],
-                                    color: Colors.transparent,
-                                    decoration: TextDecoration.underline,
-                                    decorationColor: kpink,
-                                    decorationThickness: 4,
-                                    fontSize: 20),
-                              ),
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                    context, HomeScreen.id);
-                              },
-                            ),
+                            // TextButton(
+                            //   child: Text(
+                            //     'Skip to Home',
+                            //     style: TextStyle(
+                            //         shadows: [
+                            //           Shadow(
+                            //               color: kdblue,
+                            //               offset: Offset(0, -5))
+                            //         ],
+                            //         color: Colors.transparent,
+                            //         decoration: TextDecoration.underline,
+                            //         decorationColor: kpink,
+                            //         decorationThickness: 4,
+                            //         fontSize: 20),
+                            //   ),
+                            //   onPressed: () {
+                            //     Navigator.pushNamed(
+                            //         context, HomeScreen.id);
+                            //   },
+                            // ),
                           ],
                         )
                       ],
@@ -181,7 +181,7 @@ class _SelfieUploadState extends State<SelfieUpload> {
                                     fontWeight: FontWeight.w700),
                               ),
                               subtitle: Text(
-                                "Thankyou for the noble work ❤",
+                                "Thankyou❤",
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
@@ -192,9 +192,9 @@ class _SelfieUploadState extends State<SelfieUpload> {
                           Container(
                             height: 360,
                             margin: const EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: kdblue, width: 5),
-                            ),
+                            // decoration: BoxDecoration(
+                            //   border: Border.all(color: kdblue, width: 5),
+                            // ),
                             child: Image.file(
                               imageFile,
                               fit: BoxFit.cover,
