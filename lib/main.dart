@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:power_she_pre/screens/gender_auth/selfie_upload.dart';
 import 'package:power_she_pre/screens/onboard/onboardScreen.dart';
+import 'package:power_she_pre/screens/map/location.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:power_she_pre/screens/course.dart';
 import 'package:power_she_pre/screens/home_screen.dart';
@@ -22,7 +24,7 @@ import 'package:power_she_pre/screens/safety_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -52,6 +54,7 @@ class MyApp extends StatelessWidget {
         SafetyScreen.id: (context) => const SafetyScreen(),
         PhoneDetails.id: (context) => const PhoneDetails(),
         UserProfile.id: (context) => const UserProfile(),
+        Location.id: (context) => const Location(),
       },
     );
   }

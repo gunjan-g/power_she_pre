@@ -59,6 +59,8 @@ flutter:
   assets:
     - images/
     - assets/
+    - assets/animassets/mapanimation.json
+    - assets/mapicons/
   
   fonts:
     - family: Pacifico
@@ -68,3 +70,21 @@ flutter:
     - family: Lustria
       fonts:
         - asset: fonts/Lustria-Regular.ttf
+
+    - family: WorkSans
+      fonts:
+          - asset: fonts/WorkSans-Regular.ttf
+          - asset: fonts/WorkSans-Italic.ttf
+            style: italic
+          - asset: fonts/WorkSans-Bold.ttf
+            weight: 700
+          - asset: fonts/WorkSans-SemiBold.ttf
+            weight: 500
+          - asset: fonts/WorkSans-Light.ttf
+            weight: 200
+          - asset: fonts/WorkSans-Thin.ttf
+            weight: 300
+          - asset: fonts/WorkSans-Medium.ttf
+            weight: 400
+          - asset: fonts/WorkSans-ExtraLight.ttf
+            weight: 100

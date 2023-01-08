@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import './home_page.dart';
 import 'package:lottie/lottie.dart';
 
 class Location extends StatelessWidget {
+  static const String id = "location";
   const Location({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
@@ -13,24 +13,24 @@ class Location extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
-      home: SplashScreen(),
+      home: SplashScreenLocation(),
     );
   }
 }
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+class SplashScreenLocation extends StatefulWidget {
+  const SplashScreenLocation({Key? key}) : super(key: key);
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  _SplashScreenLocationState createState() => _SplashScreenLocationState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenLocationState extends State<SplashScreenLocation> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future.delayed(Duration(seconds: 5)).then((value) => Navigator.of(context)
+    Future.delayed(Duration(seconds: 10)).then((value) => Navigator.of(context)
         .pushReplacement(MaterialPageRoute(builder: (context) => HomePage())));
   }
 
