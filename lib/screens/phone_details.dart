@@ -259,7 +259,7 @@ class _PhoneDetailsState extends State<PhoneDetails> {
                   backgroundColor: kdblue,
                   child: CircleAvatar(
                     radius: 35,
-                    backgroundImage: AssetImage('images/Safety.png'),
+                    backgroundImage: AssetImage('images/safety.png'),
                   )
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:power_she_pre/components/EndDrawer.dart';
 import 'package:power_she_pre/constants.dart';
 import 'package:power_she_pre/screens/my_products.dart';
 import 'package:power_she_pre/screens/splash.dart';
@@ -232,7 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               ExpansionTile(
                   title: Text("Business"),
-                  leading: Icon(Icons.videocam), //add icon
+                  leading: Icon(Icons.business_rounded), //add icon
                   //childrenPadding: EdgeInsets.only(left:10), //children padding
                   children: [
                     SizedBox(
@@ -318,7 +319,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ]),
               ExpansionTile(
                   title: Text("Safety"),
-                  leading: Icon(Icons.videocam), //add icon
+                  leading: Icon(Icons.safety_check_rounded), //add icon
                   //childrenPadding: EdgeInsets.only(left:10), //children padding
                   children: [
                     SizedBox(
@@ -401,7 +402,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ]),
               ExpansionTile(
                   title: Text("Health"),
-                  leading: Icon(Icons.videocam), //add icon
+                  leading: Icon(Icons.health_and_safety_rounded ), //add icon
                   //childrenPadding: EdgeInsets.only(left:10), //children padding
                   children: [
                     SizedBox(
@@ -484,7 +485,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ]),
               ExpansionTile(
                   title: Text("Personality"),
-                  leading: Icon(Icons.videocam), //add icon
+                  leading: Icon(Icons.person_rounded), //add icon
                   //childrenPadding: EdgeInsets.only(left:10), //children padding
                   children: [
                     SizedBox(
@@ -570,7 +571,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ]),
               ExpansionTile(
                   title: Text("Parenting"),
-                  leading: Icon(Icons.videocam), //add icon
+                  leading: Icon(Icons.home), //add icon
                   //childrenPadding: EdgeInsets.only(left:10), //children padding
                   children: [
                     SizedBox(
@@ -656,7 +657,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ]),
               ExpansionTile(
                   title: Text("Financial Management"),
-                  leading: Icon(Icons.videocam), //add icon
+                  leading: Icon(Icons.attach_money_rounded), //add icon
                   //childrenPadding: EdgeInsets.only(left:10), //children padding
                   children: [
                     SizedBox(
@@ -742,7 +743,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ]),
               ExpansionTile(
                   title: Text("Women Empowerment"),
-                  leading: Icon(Icons.videocam), //add icon
+                  leading: Icon(Icons.female_rounded), //add icon
                   //childrenPadding: EdgeInsets.only(left:10), //children padding
                   children: [
                     SizedBox(
@@ -865,6 +866,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () {}),
           ],
         ),
+        endDrawer: EndDrawer(),
         bottomNavigationBar: BottomBar());
   }
 

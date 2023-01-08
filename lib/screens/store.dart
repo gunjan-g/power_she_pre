@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:power_she_pre/components/AppButton.dart';
+import 'package:power_she_pre/components/EndDrawer.dart';
 import 'package:power_she_pre/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
 import '../components/AlertBox.dart';
+import 'package:power_she_pre/components/AppBarHome.dart';
+import '../components/BottomBar.dart';
+import 'package:sidebarx/sidebarx.dart';
 
 class StoreScreen extends StatefulWidget {
   static const String id = "store_screen";
@@ -51,26 +54,9 @@ class _StoreScreenState extends State<StoreScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: klblue,
-      appBar: AppBar(
-        backgroundColor: kpink,
-        title: Padding(
-          padding: const EdgeInsets.only(right: 0),
-          child: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'images/logo.png',
-                  fit: BoxFit.contain,
-                  height: 32,
-                ),
-                Container(
-                    padding: const EdgeInsets.all(8.0), child: Text('PowerShe'))
-              ],
-            ),
-          ),
-        ),
-      ),
+      appBar: AppBarHome(),
+      endDrawer:EndDrawer(),
+      bottomNavigationBar: BottomBar(),
       body: ModalProgressHUD(
         inAsyncCall: spinner,
         progressIndicator: const CircularProgressIndicator(
