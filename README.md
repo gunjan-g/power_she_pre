@@ -49,7 +49,7 @@ git init
 
 Clone this repository:
 ``` 
-git clone https://github.com/nancy0119/power_she.git
+git clone https://github.com/Paridhicodes/power_she_pre.git
 ```
 <br>
 
