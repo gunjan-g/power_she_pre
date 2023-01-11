@@ -18,7 +18,7 @@
 ## Salient Features
 
 - Learn and explore with the tutorials available
-- Share feelings and grievances with other women and counsellor
+<!-- - Share feelings and grievances with other women and counsellor -->
 - Buy and sell your products from home itself
 - Search for the available opportunities and scholarships
 - Feel safe with alerts and safe locations
