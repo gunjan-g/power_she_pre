@@ -41,12 +41,13 @@ class EndDrawer extends StatelessWidget {
             onTap: () {
               Navigator.pushNamed(context, UserProfile.id);
             }),
-        SidebarXItem(
-            icon: Icons.chat_bubble,
-            label: 'ChatSupport',
-            onTap: () {
-              Navigator.pushNamed(context, mainChatScreen.id);
-            }),
+        // SidebarXItem(
+        //     icon: Icons.girl_rounded,
+        //     label: 'My Body',
+        //     onTap: () {
+        //       Navigator.pushNamed(context, mainChatScreen.id);
+        //     }),
+
         SidebarXItem(
             icon: Icons.shopping_cart_rounded,
             label: 'My Orders',
@@ -64,6 +65,12 @@ class EndDrawer extends StatelessWidget {
             label: 'Community',
             onTap: () {
               Navigator.pushNamed(context, groupsHome.id);
+            }),
+        SidebarXItem(
+            icon: Icons.chat_bubble,
+            label: 'ChatSupport',
+            onTap: () {
+              Navigator.pushNamed(context, mainChatScreen.id);
             }),
         SidebarXItem(
           icon: Icons.logout_rounded,
